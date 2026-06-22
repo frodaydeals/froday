@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Froday | Best Flight Deals & Error Fares</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1564943689223608"
+     crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & BASE ── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --pink: #C45580;
+  --pink-light: #d4709a;
+  --pink-pale: rgba(196,85,128,0.13);
+  --pink-border: rgba(196,85,128,0.28);
+  --pink-glow: rgba(196,85,128,0.18);
+  --bg: #0c0810;
+  --bg2: #140e1a;
+  --bg3: #1c1424;
+  --bg4: #241a2e;
+  --slate: #9a87a2;
+  --slate2: #c4b8cc;
+  --white: #ffffff;
+  --cream: #f5eef8;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; cursor: none; }
+
+/* ── CUSTOM CURSOR ── */
+#cursor {
+  position: fixed; width: 12px; height: 12px; background: var(--pink);
+  border-radius: 50%; pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%); transition: transform 0.1s, width 0.2s, height 0.2s, opacity 0.2s;
+  mix-blend-mode: normal;
+}
+#cursor-ring {
+  position: fixed; width: 36px; height: 36px; border: 1.5px solid var(--pink-border);
+  border-radius: 50%; pointer-events: none; z-index: 9998;
+  transform: translate(-50%, -50%); transition: left 0.12s ease, top 0.12s ease, width 0.2s, height 0.2s, opacity 0.2s;
+}
+body:hover #cursor { opacity: 1; }
+.cursor-grow { width: 48px !important; height: 48px !important; opacity: 0.3 !important; }
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 1; opacity: 0.5;
+}
+
+/* ── NAV ── */
+nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 6%; position: fixed; width: 100%; z-index: 500; height: 68px;
+  background: rgba(12,8,16,0.82); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--pink-border);
+  transition: background 0.3s;
+}
+nav.scrolled { background: rgba(12,8,16,0.96); }
+
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-icon {
+  width: 34px; height: 34px; background: var(--pink); border-radius: 7px;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 8px 9px; gap: 5px; flex-shrink: 0;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.logo:hover .logo-icon { transform: rotate(-5deg) scale(1.1); box-shadow: 0 0 20px var(--pink-glow); }
+.logo-icon .bar1 { height: 3.5px; background: #f5eef8; border-radius: 2px; width: 100%; }
+.logo-icon .bar2 { height: 3.5px; background: #f5eef8; border-radius: 2px; width: 58%; }
+.logo-word { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; color: var(--white); letter-spacing: -0.5px; }
+.logo-word span { color: var(--pink-light); }
+
+.nav-links { display: flex; align-items: center; gap: 6px; }
+.nav-links a {
+  text-decoration: none; color: var(--slate); font-size: 13px;
+  padding: 7px 14px; border-radius: 6px; font-family: 'Space Grotesk', sans-serif;
+  transition: color 0.2s, background 0.2s; letter-spacing: 0.2px;
+}
+.nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+.nav-cta {
+  background: var(--pink) !important; color: var(--white) !important;
+  font-weight: 600 !important; padding: 8px 18px !important;
+  transition: transform 0.2s, box-shadow 0.2s !important;
+}
+.nav-cta:hover { transform: translateY(-1px) !important; box-shadow: 0 6px 20px var(--pink-glow) !important; background: var(--pink) !important; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  padding: 120px 6% 60px; position: relative; overflow: hidden;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(var(--pink-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--pink-border) 1px, transparent 1px);
+  background-size: 60px 60px; opacity: 0.25; pointer-events: none;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+}
+.hero-orb {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  animation: float 8s ease-in-out infinite;
+}
+.orb1 { width: 500px; height: 500px; top: -100px; left: 50%; transform: translateX(-50%); background: radial-gradient(circle, rgba(196,85,128,0.15) 0%, transparent 70%); }
+.orb2 { width: 300px; height: 300px; bottom: 80px; left: 10%; background: radial-gradient(circle, rgba(196,85,128,0.08) 0%, transparent 70%); animation-delay: -3s; }
+.orb3 { width: 200px; height: 200px; top: 30%; right: 8%; background: radial-gradient(circle, rgba(196,85,128,0.1) 0%, transparent 70%); animation-delay: -6s; }
+@keyframes float { 0%,100%{transform:translateY(0) translateX(-50%)} 50%{transform:translateY(-30px) translateX(-50%)} }
+.orb2 { animation: float2 10s ease-in-out infinite; }
+.orb3 { animation: float3 7s ease-in-out infinite; }
+@keyframes float2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+@keyframes float3 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(25px)} }
+
+.hero > * { position: relative; z-index: 2; }
+
+.hero-eyebrow {
+  font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 3px;
+  color: var(--pink-light); text-transform: uppercase; margin-bottom: 28px;
+  border: 1px solid var(--pink-border); padding: 7px 16px; border-radius: 4px;
+  display: inline-flex; align-items: center; gap: 8px;
+  animation: fadeUp 0.8s ease both;
+}
+.live-dot { width: 6px; height: 6px; background: #4ade80; border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+.hero h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(42px, 7vw, 82px); font-weight: 700;
+  line-height: 1.03; letter-spacing: -2.5px; margin-bottom: 24px;
+  animation: fadeUp 0.8s ease 0.15s both;
+}
+.hero h1 em { font-style: normal; color: var(--pink-light); position: relative; }
+.hero h1 em::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px;
+  background: linear-gradient(90deg, var(--pink), transparent);
+}
+
+.hero-sub {
+  color: var(--slate); font-size: 17px; max-width: 500px; line-height: 1.7;
+  margin-bottom: 44px; animation: fadeUp 0.8s ease 0.3s both;
+}
+
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.8s ease 0.45s both; }
+
+/* Animated plane path */
+.plane-path {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; overflow: visible; z-index: 1;
+}
+.plane-trail { stroke-dasharray: 800; stroke-dashoffset: 800; animation: drawTrail 3s ease 1s forwards; }
+@keyframes drawTrail { to { stroke-dashoffset: 0; } }
+.plane-icon-anim { animation: flyAcross 3s ease 1s forwards; opacity: 0; }
+@keyframes flyAcross { 0%{opacity:1;offset-distance:0%} 100%{opacity:0;offset-distance:100%} }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px;
+  color: var(--slate); text-transform: uppercase; z-index: 2;
+  animation: fadeUp 1s ease 1s both;
+}
+.scroll-arrow { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--pink), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+@keyframes scrollPulse { 0%,100%{opacity:0.4;transform:scaleY(0.8)} 50%{opacity:1;transform:scaleY(1)} }
+
+/* ── TICKER ── */
+.ticker-wrap {
+  overflow: hidden; padding: 14px 0;
+  background: rgba(196,85,128,0.05);
+  border-top: 1px solid var(--pink-border);
+  border-bottom: 1px solid var(--pink-border);
+}
+.ticker { display: flex; animation: tick 35s linear infinite; white-space: nowrap; }
+.ticker:hover { animation-play-state: paused; }
+.ticker-item {
+  font-family: 'Space Mono', monospace; font-size: 11px;
+  color: var(--pink-light); padding: 0 40px; letter-spacing: 1px;
+  display: flex; align-items: center; gap: 10px;
+}
+.ticker-item .t-price { color: var(--white); font-weight: 700; }
+.ticker-sep { color: var(--pink-border); }
+@keyframes tick { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* ── STATS ── */
+.stats-section { padding: 0 6% 80px; }
+.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--pink-border); border: 1px solid var(--pink-border); border-radius: 12px; overflow: hidden; }
+.stat-block {
+  background: var(--bg2); padding: 40px 30px; text-align: center;
+  transition: background 0.3s;
+}
+.stat-block:hover { background: var(--bg3); }
+.stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 700; color: var(--pink-light); letter-spacing: -2px; line-height: 1; }
+.stat-label { font-size: 11px; color: var(--slate); margin-top: 8px; text-transform: uppercase; letter-spacing: 2px; font-family: 'Space Mono', monospace; }
+
+/* ── FILTER BAR ── */
+.filter-section { padding: 0 6% 32px; }
+.filter-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.filter-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--slate); text-transform: uppercase; margin-right: 4px; }
+.filter-btn {
+  padding: 8px 18px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1);
+  background: transparent; color: var(--slate); font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px; cursor: none; transition: all 0.2s; font-weight: 500;
+}
+.filter-btn:hover { border-color: var(--pink-border); color: var(--white); background: var(--pink-pale); }
+.filter-btn.active { background: var(--pink); color: var(--white); border-color: var(--pink); }
+
+/* ── SECTION HEAD ── */
+.section-head { padding: 0 6% 32px; display: flex; align-items: baseline; gap: 16px; }
+.section-head h2 { font-family: 'Space Grotesk', sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -1px; }
+.section-tag { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--pink-light); text-transform: uppercase; border: 1px solid var(--pink-border); padding: 4px 10px; border-radius: 3px; }
+
+/* ── BOARDING PASS CARDS ── */
+.deals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; padding: 0 6% 90px; }
+
+.pass {
+  background: var(--bg2); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px; overflow: hidden; cursor: none;
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s, box-shadow 0.3s;
+  opacity: 0; transform: translateY(30px);
+}
+.pass.visible { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s, box-shadow 0.3s; }
+.pass:hover { transform: translateY(-8px) scale(1.01); border-color: var(--pink-border); box-shadow: 0 20px 60px rgba(196,85,128,0.15); }
+.pass.hidden { display: none; }
+
+.pass-head { padding: 20px 22px 16px; display: flex; justify-content: space-between; align-items: flex-start; }
+.pass-badge {
+  font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase; background: var(--pink-pale); color: var(--pink-light);
+  border: 1px solid var(--pink-border); padding: 5px 10px; border-radius: 4px;
+}
+.pass-badge.error { background: rgba(220,60,60,0.1); color: #e06060; border-color: rgba(220,60,60,0.3); }
+.pass-badge.business { background: rgba(168,85,247,0.1); color: #c084fc; border-color: rgba(168,85,247,0.3); }
+.pass-badge.premium { background: rgba(251,191,36,0.1); color: #fbbf24; border-color: rgba(251,191,36,0.3); }
+.pass-badge.gflights { background: rgba(74,222,128,0.1); color: #4ade80; border-color: rgba(74,222,128,0.3); }
+.pass.gflights-empty-card {
+  border: 1.5px dashed var(--pink-border); display: flex; align-items: center;
+  justify-content: center; padding: 30px 24px; text-align: center; cursor: default;
+}
+.pass.gflights-empty-card:hover { transform: none; box-shadow: none; }
+.gf-note { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.5px; color: var(--slate); margin-top: 12px; line-height: 1.7; }
+
+.pass-price { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; color: var(--pink-light); }
+
+/* Perforation */
+.perf { display: flex; align-items: center; margin: 0 22px; position: relative; }
+.perf-line { flex: 1; border-top: 2px dashed rgba(255,255,255,0.08); }
+.perf-dot { width: 18px; height: 18px; border-radius: 50%; background: var(--bg); flex-shrink: 0; margin: -1px -9px; border: 1px solid rgba(255,255,255,0.05); }
+
+.pass-body { padding: 18px 22px; }
+.route-row { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.airport-code { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -1px; }
+.route-mid { flex: 1; display: flex; align-items: center; flex-direction: column; gap: 4px; }
+.route-mid-line { display: flex; align-items: center; width: 100%; }
+.route-mid-line::before, .route-mid-line::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.1); }
+.route-plane { font-size: 14px; margin: 0 6px; color: var(--pink-light); }
+.duration-label { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--slate); letter-spacing: 1px; }
+.route-city { font-size: 10px; color: var(--slate); margin-top: 3px; font-family: 'Space Mono', monospace; letter-spacing: 0.5px; }
+
+.pass-details { display: flex; gap: 18px; margin-bottom: 18px; }
+.pass-detail label { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: var(--slate); display: block; margin-bottom: 4px; }
+.pass-detail span { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 500; }
+
+/* Savings bar */
+.savings-bar-wrap { margin-bottom: 18px; }
+.savings-bar-label { display: flex; justify-content: space-between; margin-bottom: 6px; }
+.savings-bar-label span { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--slate); letter-spacing: 1px; text-transform: uppercase; }
+.savings-bar-label strong { font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: #4ade80; }
+.savings-bar-bg { height: 4px; background: rgba(255,255,255,0.06); border-radius: 99px; overflow: hidden; }
+.savings-bar-fill { height: 100%; background: linear-gradient(90deg, var(--pink), #4ade80); border-radius: 99px; width: 0; transition: width 1s ease 0.3s; }
+
+.pass-btn {
+  width: 100%; padding: 14px; background: var(--pink); color: var(--white);
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px;
+  border: none; cursor: none; letter-spacing: 0.5px; transition: background 0.2s, transform 0.15s;
+  position: relative; overflow: hidden;
+}
+.pass-btn::after { content: ''; position: absolute; inset: 0; background: white; opacity: 0; transition: opacity 0.2s; }
+.pass-btn:hover::after { opacity: 0.08; }
+.pass-btn:active { transform: scale(0.98); }
+
+/* ── FEATURES ── */
+.features-section { background: var(--bg2); padding: 80px 6%; border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04); }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; margin-top: 40px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; overflow: hidden; }
+.feat { padding: 36px 28px; background: var(--bg2); transition: background 0.25s, transform 0.25s; }
+.feat:hover { background: var(--bg4); }
+.feat-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--pink-pale); border: 1px solid var(--pink-border); display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 18px; transition: transform 0.3s; }
+.feat:hover .feat-icon { transform: scale(1.15) rotate(-5deg); }
+.feat h3 { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+.feat p { color: var(--slate); font-size: 13px; line-height: 1.65; }
+
+/* ── HOW IT WORKS ── */
+.how-section { padding: 90px 6%; }
+.how-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; position: relative; margin-top: 48px; }
+.how-steps::before { content: ''; position: absolute; top: 28px; left: 12%; right: 12%; height: 1px; background: linear-gradient(90deg, transparent, var(--pink-border), transparent); }
+.how-step { text-align: center; padding: 0 20px; }
+.step-num { width: 56px; height: 56px; border-radius: 50%; background: var(--bg2); border: 1px solid var(--pink-border); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--pink-light); position: relative; z-index: 2; transition: background 0.3s, transform 0.3s; }
+.how-step:hover .step-num { background: var(--pink); color: white; transform: scale(1.1); }
+.how-step h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+.how-step p { color: var(--slate); font-size: 13px; line-height: 1.6; }
+
+/* ── CTA / NEWSLETTER ── */
+.cta-section {
+  margin: 80px 6%; border: 1px solid var(--pink-border); border-radius: 14px;
+  padding: 70px 60px; display: flex; align-items: center;
+  justify-content: space-between; gap: 40px; flex-wrap: wrap;
+  position: relative; overflow: hidden;
+}
+.cta-section::before { content: ''; position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(196,85,128,0.12), transparent 70%); pointer-events: none; }
+.cta-section h2 { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; letter-spacing: -1.5px; max-width: 380px; line-height: 1.15; }
+.cta-section h2 em { font-style: normal; color: var(--pink-light); }
+.cta-right { display: flex; flex-direction: column; gap: 14px; min-width: 300px; flex: 1; max-width: 420px; }
+.email-row { display: flex; gap: 10px; }
+.email-row input {
+  flex: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px; padding: 13px 16px; color: var(--white);
+  font-family: 'Inter', sans-serif; font-size: 14px; outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.email-row input:focus { border-color: var(--pink); background: rgba(196,85,128,0.05); }
+.email-row input::placeholder { color: var(--slate); }
+.cta-note { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1px; color: var(--slate); }
+.perks { display: flex; gap: 16px; flex-wrap: wrap; }
+.perk { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--slate2); font-family: 'Space Grotesk', sans-serif; }
+.perk-dot { width: 5px; height: 5px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
+
+/* ── TOAST ── */
+#toast {
+  position: fixed; bottom: 30px; right: 30px; background: var(--bg3);
+  border: 1px solid var(--pink-border); border-radius: 10px;
+  padding: 16px 22px; font-family: 'Space Grotesk', sans-serif; font-size: 14px;
+  z-index: 9000; transform: translateY(80px); opacity: 0;
+  transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  display: flex; align-items: center; gap: 10px; max-width: 320px;
+}
+#toast.show { transform: translateY(0); opacity: 1; }
+.toast-icon { font-size: 20px; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(12,8,16,0.85);
+  backdrop-filter: blur(8px); z-index: 8000; display: flex;
+  align-items: center; justify-content: center; padding: 20px;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--bg2); border: 1px solid var(--pink-border); border-radius: 16px;
+  padding: 40px; max-width: 480px; width: 100%; position: relative;
+  transform: scale(0.9) translateY(20px); transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.modal-overlay.open .modal { transform: scale(1) translateY(0); }
+.modal-close {
+  position: absolute; top: 16px; right: 16px; width: 32px; height: 32px;
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; background: transparent;
+  color: var(--slate); font-size: 16px; cursor: none; display: flex;
+  align-items: center; justify-content: center; transition: all 0.2s;
+}
+.modal-close:hover { background: rgba(255,255,255,0.08); color: var(--white); }
+.modal-badge { display: inline-block; padding: 5px 12px; border-radius: 4px; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; }
+.modal h2 { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -1px; margin-bottom: 6px; }
+.modal-route { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--slate); letter-spacing: 2px; margin-bottom: 24px; }
+.modal-details { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+.modal-detail { background: var(--bg3); border-radius: 8px; padding: 14px; }
+.modal-detail label { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: var(--slate); display: block; margin-bottom: 6px; }
+.modal-detail span { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; }
+.modal-price-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding: 18px; background: var(--pink-pale); border: 1px solid var(--pink-border); border-radius: 8px; }
+.modal-price { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; color: var(--pink-light); letter-spacing: -1px; }
+.modal-orig { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--slate); text-decoration: line-through; }
+.modal-save { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); padding: 5px 10px; border-radius: 4px; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1px; }
+.modal-btn { width: 100%; padding: 16px; background: var(--pink); color: var(--white); border: none; border-radius: 8px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; cursor: none; transition: all 0.2s; letter-spacing: 0.3px; }
+.modal-btn:hover { background: var(--pink-light); transform: translateY(-1px); box-shadow: 0 8px 24px var(--pink-glow); }
+.modal-note { text-align: center; margin-top: 12px; font-family: 'Space Mono', monospace; font-size: 10px; color: var(--slate); letter-spacing: 0.5px; }
+
+/* ── FOOTER ── */
+footer { padding: 50px 6% 36px; border-top: 1px solid rgba(255,255,255,0.05); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer-brand p { color: var(--slate); font-size: 13px; line-height: 1.65; margin-top: 14px; max-width: 240px; }
+.footer-col h4 { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600; margin-bottom: 16px; color: var(--slate2); }
+.footer-col a { display: block; text-decoration: none; color: var(--slate); font-size: 13px; margin-bottom: 10px; transition: color 0.2s; font-family: 'Inter', sans-serif; }
+.footer-col a:hover { color: var(--pink-light); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 28px; flex-wrap: wrap; gap: 12px; }
+.foot-copy { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--slate); letter-spacing: 1px; }
+.social-links { display: flex; gap: 10px; }
+.social-link { width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; text-decoration: none; transition: all 0.2s; }
+.social-link:hover { border-color: var(--pink-border); background: var(--pink-pale); transform: translateY(-2px); }
+
+/* ── SCROLL REVEAL ── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── BUTTONS ── */
+.btn-primary {
+  background: var(--pink); color: var(--white); font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 15px; padding: 14px 32px; border-radius: 8px;
+  border: none; cursor: none; transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  letter-spacing: 0.2px;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px var(--pink-glow); background: var(--pink-light); }
+.btn-secondary {
+  background: transparent; color: var(--white); font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500; font-size: 15px; padding: 14px 32px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.18); cursor: none; transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--pink-border); color: var(--pink-light); background: var(--pink-pale); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 0 5%; }
+  .nav-links a:not(.nav-cta) { display: none; }
+  .hero h1 { font-size: 42px; letter-spacing: -1.5px; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .stat-block { border-right: none; border-bottom: 1px solid var(--pink-border); }
+  .stat-block:last-child { border-bottom: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .cta-section { padding: 44px 28px; }
+  .how-steps::before { display: none; }
+  .deals-grid { padding: 0 5% 70px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- Toast notification -->
+<div id="toast">
+  <span class="toast-icon">🎉</span>
+  <span id="toast-msg">Welcome to Froday!</span>
+</div>
+
+<!-- Deal Modal -->
+<div class="modal-overlay" id="dealModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-badge" class="modal-badge"></div>
+    <h2 id="modal-title"></h2>
+    <div id="modal-route" class="modal-route"></div>
+    <div class="modal-price-row">
+      <div>
+        <div class="modal-price" id="modal-price"></div>
+        <div class="modal-orig" id="modal-orig"></div>
+      </div>
+      <div class="modal-save" id="modal-save"></div>
+    </div>
+    <div class="modal-details" id="modal-details"></div>
+    <button class="modal-btn" onclick="showToast('Opening airline site...', '✈️'); closeModal()">Book This Deal →</button>
+    <div class="modal-note">⚡ Prices change fast — book immediately to lock this rate</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="logo" href="#">
+    <div class="logo-icon"><div class="bar1"></div><div class="bar2"></div></div>
+    <div class="logo-word">ro<span>day</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="#deals">Deals</a>
+    <a href="#how">How It Works</a>
+    <a href="#why">Why Us</a>
+    <a href="#newsletter" class="nav-cta">Get Alerts Free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-orb orb3"></div>
+
+  <div class="hero-eyebrow">
+    <span class="live-dot"></span>
+    Live deal tracker · Updated hourly
+  </div>
+
+  <h1>Find airline <em>error fares</em><br>before they vanish.</h1>
+
+  <p class="hero-sub">
+    Premium flight deals, mistake fares, and hidden airline discounts refreshed every hour.
+    Real savings — not sponsored noise.
+  </p>
+
+  <div class="hero-cta">
+    <button class="btn-primary" onclick="document.getElementById('deals').scrollIntoView({behavior:'smooth'})">Browse Deals →</button>
+    <button class="btn-secondary" onclick="document.getElementById('newsletter').scrollIntoView({behavior:'smooth'})">Get Free Alerts</button>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker" id="ticker">
+    <span class="ticker-item">✈ MAA → SIN &nbsp;<span class="t-price">₹9,499</span><span class="ticker-sep">·</span> ERROR FARE</span>
+    <span class="ticker-item">✈ MAA → NRT &nbsp;<span class="t-price">₹58,990</span><span class="ticker-sep">·</span> BUSINESS CLASS</span>
+    <span class="ticker-item">✈ MAA → SYD &nbsp;<span class="t-price">₹19,999</span><span class="ticker-sep">·</span> LIMITED SEATS</span>
+    <span class="ticker-item">✈ BOM → LHR &nbsp;<span class="t-price">₹31,200</span><span class="ticker-sep">·</span> FLASH DEAL</span>
+    <span class="ticker-item">✈ DEL → JFK &nbsp;<span class="t-price">₹42,500</span><span class="ticker-sep">·</span> ECONOMY</span>
+    <span class="ticker-item">✈ BLR → DXB &nbsp;<span class="t-price">₹6,800</span><span class="ticker-sep">·</span> ERROR FARE</span>
+    <span class="ticker-item">✈ MAA → SIN &nbsp;<span class="t-price">₹9,499</span><span class="ticker-sep">·</span> ERROR FARE</span>
+    <span class="ticker-item">✈ MAA → NRT &nbsp;<span class="t-price">₹58,990</span><span class="ticker-sep">·</span> BUSINESS CLASS</span>
+    <span class="ticker-item">✈ MAA → SYD &nbsp;<span class="t-price">₹19,999</span><span class="ticker-sep">·</span> LIMITED SEATS</span>
+    <span class="ticker-item">✈ BOM → LHR &nbsp;<span class="t-price">₹31,200</span><span class="ticker-sep">·</span> FLASH DEAL</span>
+    <span class="ticker-item">✈ DEL → JFK &nbsp;<span class="t-price">₹42,500</span><span class="ticker-sep">·</span> ECONOMY</span>
+    <span class="ticker-item">✈ BLR → DXB &nbsp;<span class="t-price">₹6,800</span><span class="ticker-sep">·</span> ERROR FARE</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section reveal" style="padding-top:70px">
+  <div class="stats-grid">
+    <div class="stat-block"><div class="stat-num" id="c1">0</div><div class="stat-label">Deals Posted</div></div>
+    <div class="stat-block"><div class="stat-num" id="c2">0</div><div class="stat-label">Travelers Saved Money</div></div>
+    <div class="stat-block"><div class="stat-num" id="c3">0</div><div class="stat-label">Countries Covered</div></div>
+  </div>
+</div>
+
+<!-- DEALS SECTION -->
+<div id="deals" style="padding-top: 80px;">
+  <div class="section-head reveal">
+    <h2>Trending Deals</h2>
+    <span class="section-tag" id="deal-count-tag">6 Active</span>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="filter-section reveal">
+    <div class="filter-row">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-btn active" onclick="filterDeals('all', this)">All Deals</button>
+      <button class="filter-btn" onclick="filterDeals('error', this)">Error Fares</button>
+      <button class="filter-btn" onclick="filterDeals('economy', this)">Economy</button>
+      <button class="filter-btn" onclick="filterDeals('business', this)">Business</button>
+      <button class="filter-btn" onclick="filterDeals('premium', this)">Premium</button>
+      <button class="filter-btn" onclick="filterDeals('gflights', this)">Google Flights ✓</button>
+    </div>
+    <div class="gf-note">✓ Verified · Google Flights = links straight to the live Google Flights search for that exact route &amp; date, so the price you see is the real one · only deals at 40% off or more are shown</div>
+  </div>
+
+  <div class="deals-grid" id="dealsGrid">
+
+    <div class="pass" data-type="error">
+      <div class="pass-head">
+        <span class="pass-badge error">Error Fare 🔴</span>
+        <span class="pass-price">₹9,499</span>
+      </div>
+      <div class="perf"><div class="perf-dot"></div><div class="perf-line"></div><div class="perf-dot"></div></div>
+      <div class="pass-body">
+        <div class="route-row">
+          <div><div class="airport-code">MAA</div><div class="route-city">Chennai, IN</div></div>
+          <div class="route-mid">
+            <div class="route-mid-line"><span class="route-plane">✈</span></div>
+            <div class="duration-label">4h 15m</div>
+          </div>
+          <div style="text-align:right"><div class="airport-code">SIN</div><div class="route-city">Singapore, SG</div></div>
+        </div>
+        <div class="savings-bar-wrap">
+          <div class="savings-bar-label"><span>Savings</span><strong>Save ₹12,000+</strong></div>
+          <div class="savings-bar-bg"><div class="savings-bar-fill" style="--w:78%" data-width="78%"></div></div>
+        </div>
+        <div class="pass-details">
+          <div class="pass-detail"><label>Class</label><span>Economy</span></div>
+          <div class="pass-detail"><label>Expires</label><span>~6 hrs ⚡</span></div>
+          <div class="pass-detail"><label>Airline</label><span>IndiGo</span></div>
+        </div>
+      </div>
+      <button class="pass-btn" onclick="openModal({title:'Chennai to Singapore',route:'MAA → SIN · 4h 15m',price:'₹9,499',orig:'₹21,500',save:'Save ₹12,001',badge:'Error Fare',badgeClass:'error',details:[{l:'Class',v:'Economy'},{l:'Airline',v:'IndiGo'},{l:'Expires',v:'~6 hours'},{l:'Stops',v:'Non-stop'},{l:'Departs',v:'06:45 AM'},{l:'Arrives',v:'12:55 PM'}]})">View Deal →</button>
+    </div>
+
+    <div class="pass" data-type="business">
+      <div class="pass-head">
+        <span class="pass-badge business">Business ✦</span>
+        <span class="pass-price">₹58,990</span>
+      </div>
+      <div class="perf"><div class="perf-dot"></div><div class="perf-line"></div><div class="perf-dot"></div></div>
+      <div class="pass-body">
+        <div class="route-row">
+          <div><div class="airport-code">MAA</div><div class="route-city">Chennai, IN</div></div>
+          <div class="route-mid">
+            <div class="route-mid-line"><span class="route-plane">✈</span></div>
+            <div class="duration-label">10h 45m</div>
+          </div>
+          <div style="text-align:right"><div class="airport-code">NRT</div><div class="route-city">Tokyo, JP</div></div>
+        </div>
+        <div class="savings-bar-wrap">
+          <div class="savings-bar-label"><span>Savings</span><strong>Save ₹60,000+</strong></div>
+          <div class="savings-bar-bg"><div class="savings-bar-fill" data-width="82%"></div></div>
+        </div>
+        <div class="pass-details">
+          <div class="pass-detail"><label>Class</label><span>Business</span></div>
+          <div class="pass-detail"><label>Expires</label><span>~2 days</span></div>
+          <div class="pass-detail"><label>Airline</label><span>ANA</span></div>
+        </div>
+      </div>
+      <button class="pass-btn" onclick="openModal({title:'Chennai to Tokyo',route:'MAA → NRT · 10h 45m',price:'₹58,990',orig:'₹1,18,000',save:'Save ₹59,010',badge:'Business Class',badgeClass:'business',details:[{l:'Class',v:'Business'},{l:'Airline',v:'ANA'},{l:'Expires',v:'~2 days'},{l:'Stops',v:'1 Stop'},{l:'Departs',v:'10:20 AM'},{l:'Arrives',v:'09:05 AM+1'}]})">View Deal →</button>
+    </div>
+
+    <div class="pass" data-type="error">
+      <div class="pass-head">
+        <span class="pass-badge error">Error Fare 🔴</span>
+        <span class="pass-price">₹19,999</span>
+      </div>
+      <div class="perf"><div class="perf-dot"></div><div class="perf-line"></div><div class="perf-dot"></div></div>
+      <div class="pass-body">
+        <div class="route-row">
+          <div><div class="airport-code">MAA</div><div class="route-city">Chennai, IN</div></div>
+          <div class="route-mid">
+            <div class="route-mid-line"><span class="route-plane">✈</span></div>
+            <div class="duration-label">13h 50m</div>
+          </div>
+          <div style="text-align:right"><div class="airport-code">SYD</div><div class="route-city">Sydney, AU</div></div>
+        </div>
+        <div class="savings-bar-wrap">
+          <div class="savings-bar-label"><span>Savings</span><strong>Save ₹80,000+</strong></div>
+          <div class="savings-bar-bg"><div class="savings-bar-fill" data-width="91%"></div></div>
+        </div>
+        <div class="pass-details">
+          <div class="pass-detail"><label>Class</label><span>Economy</span></div>
+          <div class="pass-detail"><label>Expires</label><span>Very soon ⚡</span></div>
+          <div class="pass-detail"><label>Airline</label><span>Qantas</span></div>
+        </div>
+      </div>
+      <button class="pass-btn" onclick="openModal({title:'Chennai to Sydney',route:'MAA → SYD · 13h 50m',price:'₹19,999',orig:'₹1,02,000',save:'Save ₹82,001',badge:'Error Fare',badgeClass:'error',details:[{l:'Class',v:'Economy'},{l:'Airline',v:'Qantas'},{l:'Expires',v:'Very soon'},{l:'Stops',v:'1 Stop'},{l:'Departs',v:'11:30 PM'},{l:'Arrives',v:'02:20 PM+1'}]})">View Deal →</button>
+    </div>
+
+    <div class="pass" data-type="economy">
+      <div class="pass-head">
+        <span class="pass-badge">Economy</span>
+        <span class="pass-price">₹31,200</span>
+      </div>
+      <div class="perf"><div class="perf-dot"></div><div class="perf-line"></div><div class="perf-dot"></div></div>
+      <div class="pass-body">
+        <div class="route-row">
+          <div><div class="airport-code">BOM</div><div class="route-city">Mumbai, IN</div></div>
+          <div class="route-mid">
+            <div class="route-mid-line"><span class="route-plane">✈</span></div>
+            <div class="duration-label">9h 30m</div>
+          </div>
+          <div style="text-align:right"><div class="airport-code">LHR</div><div class="route-city">London, UK</div></div>
+        </div>
+        <div class="savings-bar-wrap">
+          <div class="savings-bar-label"><span>Savings</span><strong>Save ₹22,000+</strong></div>
+          <div class="savings-bar-bg"><div class="savings-bar-fill" data-width="55%"></div></div>
+        </div>
+        <div class="pass-details">
+          <div class="pass-detail"><label>Class</label><span>Economy</span></div>
+          <div class="pass-detail"><label>Expires</label><span>~3 days</span></div>
+          <div class="pass-detail"><label>Airline</label><span>Air India</span></div>
+        </div>
+      </div>
+      <button class="pass-btn" onclick="openModal({title:'Mumbai to London',route:'BOM → LHR · 9h 30m',price:'₹31,200',orig:'₹53,500',save:'Save ₹22,300',badge:'Economy',badgeClass:'',details:[{l:'Class',v:'Economy'},{l:'Airline',v:'Air India'},{l:'Expires',v:'~3 days'},{l:'Stops',v:'Non-stop'},{l:'Departs',v:'02:15 AM'},{l:'Arrives',v:'07:45 AM'}]})">View Deal →</button>
+    </div>
+
+    <div class="pass" data-type="premium">
+      <div class="pass-head">
+        <span class="pass-badge premium">Premium Eco ★</span>
+        <span class="pass-price">₹42,500</span>
+      </div>
+      <div class="perf"><div class="perf-dot"></div><div class="perf-line"></div><div class="perf-dot"></div></div>
+      <div class="pass-body">
+        <div class="route-row">
+          <div><div class="airport-code">DEL</div><div class="route-city">Delhi, IN</div></div>
+          <div class="route-mid">
+            <div class="route-mid-line"><span class="route-plane">✈</span></div>
+            <div class="duration-label">16h 20m</div>
+          </div>
+          <div style="text-align:right"><div class="airport-code">JFK</div><div class="route-city">New York, US</div></div>
+        </div>
+        <div class="savings-bar-wrap">
+          <div class="savings-bar-label"><span>Savings</span><strong>Save ₹38,000+</strong></div>
+          <div class="savings-bar-bg"><div class="savings-bar-fill" data-width="66%"></div></div>
+        </div>
+        <div class="pass-details">
+          <div class="pass-detail"><label>Class</label><span>Premium Eco</span></div>
+          <div class="pass-detail"><label>Expires</label><span>~1 day</span></div>
+          <div class="pass-detail"><label>Airline</label><span>United</span></div>
+        </div>
+      </div>
+      <button class="pass-btn" onclick="openModal({title:'Delhi to New York',route:'DEL → JFK · 16h 20m',price:'₹42,500',orig:'₹80,000',save:'Save ₹37,500',badge:'Premium Economy',badgeClass:'premium',details:[{l:'Class',v:'Premium Eco'},{l:'Airline',v:'United Airlines'},{l:'Expires',v:'~1 day'},{l:'Stops',v:'1 Stop'},{l:'Departs',v:'01:40 AM'},{l:'Arrives',v:'08:00 AM'}]})">View Deal →</button>
+    </div>
+
+    <div class="pass" data-type="error">
+      <div class="pass-head">
+        <span class="pass-badge error">Error Fare 🔴</span>
+        <span class="pass-price">₹6,800</span>
+      </div>
+      <div class="perf"><div class="perf-dot"></div><div class="perf-line"></div><div class="perf-dot"></div></div>
+      <div class="pass-body">
+        <div class="route-row">
+          <div><div class="airport-code">BLR</div><div class="route-city">Bengaluru, IN</div></div>
+          <div class="route-mid">
+            <div class="route-mid-line"><span class="route-plane">✈</span></div>
+            <div class="duration-label">3h 30m</div>
+          </div>
+          <div style="text-align:right"><div class="airport-code">DXB</div><div class="route-city">Dubai, AE</div></div>
+        </div>
+        <div class="savings-bar-wrap">
+          <div class="savings-bar-label"><span>Savings</span><strong>Save ₹9,000+</strong></div>
+          <div class="savings-bar-bg"><div class="savings-bar-fill" data-width="70%"></div></div>
+        </div>
+        <div class="pass-details">
+          <div class="pass-detail"><label>Class</label><span>Economy</span></div>
+          <div class="pass-detail"><label>Expires</label><span>~4 hrs ⚡</span></div>
+          <div class="pass-detail"><label>Airline</label><span>Emirates</span></div>
+        </div>
+      </div>
+      <button class="pass-btn" onclick="openModal({title:'Bengaluru to Dubai',route:'BLR → DXB · 3h 30m',price:'₹6,800',orig:'₹16,200',save:'Save ₹9,400',badge:'Error Fare',badgeClass:'error',details:[{l:'Class',v:'Economy'},{l:'Airline',v:'Emirates'},{l:'Expires',v:'~4 hours'},{l:'Stops',v:'Non-stop'},{l:'Departs',v:'08:00 PM'},{l:'Arrives',v:'10:30 PM'}]})">View Deal →</button>
+    </div>
+
+    <div class="pass gflights-empty-card" id="gflightsEmpty" data-type="gflights">
+      <div>
+        <div style="font-size:26px;margin-bottom:10px;">🔍</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;margin-bottom:6px;">No verified Google Flights deals yet</div>
+        <div style="color:var(--slate);font-size:12px;line-height:1.6;max-width:230px;margin:0 auto;">Drop a route into <code style="color:var(--pink-light)">verifiedDeals</code> in the script below — cards appear here automatically, but only once they clear 40% off.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="how-section">
+  <div class="section-head reveal" style="padding:0 0 0">
+    <h2>How It Works</h2>
+    <span class="section-tag">3 simple steps</span>
+  </div>
+  <div class="how-steps reveal">
+    <div class="how-step">
+      <div class="step-num">1</div>
+      <h3>We track airlines 24/7</h3>
+      <p>Our crawlers monitor thousands of routes across every major airline, watching for price drops and miscodings.</p>
+    </div>
+    <div class="how-step">
+      <div class="step-num">2</div>
+      <h3>You get alerted instantly</h3>
+      <p>The moment a deal drops below our threshold, you get an email before the fare is fixed or sold out.</p>
+    </div>
+    <div class="how-step">
+      <div class="step-num">3</div>
+      <h3>You book. You fly. You save.</h3>
+      <p>Click the link, book directly with the airline. No middlemen, no booking fees — just the deal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY FRODAY -->
+<section id="why" class="features-section">
+  <div class="section-head reveal" style="padding:0 0 0">
+    <h2>Why Froday</h2>
+    <span class="section-tag">The difference</span>
+  </div>
+  <div class="features-grid reveal">
+    <div class="feat">
+      <div class="feat-icon">⚡</div>
+      <h3>Faster than everyone</h3>
+      <p>Error fares vanish in minutes. Our crawlers detect them before deal aggregators even wake up.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">🎯</div>
+      <h3>Only real mistakes</h3>
+      <p>Airlines miscode prices in ways that save you thousands. We find them — you book them.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">🛋️</div>
+      <h3>Economy to First Class</h3>
+      <p>Business class at economy prices, first class at business prices. Every cabin, every tier.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">🚫</div>
+      <h3>Zero ads, zero bias</h3>
+      <p>Every deal is organic. We don't get paid by airlines to push routes. You get the truth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER CTA -->
+<section id="newsletter" class="cta-section reveal">
+  <div>
+    <h2>Never miss a fare that could <em>change your plans.</em></h2>
+    <div class="perks" style="margin-top:18px">
+      <div class="perk"><div class="perk-dot"></div>Free forever</div>
+      <div class="perk"><div class="perk-dot"></div>No spam</div>
+      <div class="perk"><div class="perk-dot"></div>Unsubscribe anytime</div>
+    </div>
+  </div>
+  <div class="cta-right">
+    <div class="email-row">
+      <input type="email" placeholder="your@email.com" id="emailInput">
+      <button class="btn-primary" onclick="handleSubscribe()">Join Free</button>
+    </div>
+    <div class="cta-note">47,000+ travelers already receiving alerts</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid reveal">
+    <div class="footer-brand">
+      <a class="logo" href="#">
+        <div class="logo-icon"><div class="bar1"></div><div class="bar2"></div></div>
+        <div class="logo-word">ro<span>day</span></div>
+      </a>
+      <p>Find airline error fares and hidden deals before they disappear. Built for travelers who fly smart.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Deals</h4>
+      <a href="#deals">Error Fares</a>
+      <a href="#deals">Business Class</a>
+      <a href="#deals">Economy</a>
+      <a href="#deals">Premium</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About Us</a>
+      <a href="#">How It Works</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="foot-copy">© 2026 Froday · Find cheap flights. Fly more.</div>
+    <div class="social-links">
+      <a class="social-link" href="#" title="Twitter">𝕏</a>
+      <a class="social-link" href="#" title="Instagram">◻</a>
+      <a class="social-link" href="#" title="Telegram">✈</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── CURSOR ── */
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+(function animRing(){ rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); })();
+document.querySelectorAll('button, a, .pass, .filter-btn, .feat').forEach(el => {
+  el.addEventListener('mouseenter', () => { ring.classList.add('cursor-grow'); cur.style.opacity='0'; });
+  el.addEventListener('mouseleave', () => { ring.classList.remove('cursor-grow'); cur.style.opacity='1'; });
+});
+
+/* ── NAV SCROLL ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ── ANIMATED COUNTER ── */
+function animCount(id, target, suffix, startVal=0) {
+  let n = startVal, steps = 80, increment = (target - startVal) / steps;
+  const el = document.getElementById(id);
+  const go = () => { n = Math.min(n + increment, target); el.textContent = Math.round(n).toLocaleString() + suffix; if(n < target) requestAnimationFrame(go); };
+  go();
+}
+const statsObs = new IntersectionObserver(entries => {
+  if(entries[0].isIntersecting){ animCount('c1',1280,'+'); animCount('c2',47000,'+'); animCount('c3',195,'+'); statsObs.disconnect(); }
+}, {threshold:0.3});
+statsObs.observe(document.querySelector('.stats-section'));
+
+/* ── SCROLL REVEAL ── */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* ── DEAL CARDS REVEAL ── */
+const cardObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      const bar = e.target.querySelector('.savings-bar-fill');
+      if(bar) { setTimeout(()=>{ bar.style.width = bar.dataset.width; }, 200); }
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.pass').forEach((el, i) => {
+  el.style.transitionDelay = (i * 0.07) + 's';
+  cardObs.observe(el);
+});
+
+/* ── FILTER ── */
+function filterDeals(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const cards = document.querySelectorAll('.pass');
+  let count = 0;
+  cards.forEach(card => {
+    const show = type === 'all' || card.dataset.type === type;
+    card.classList.toggle('hidden', !show);
+    if(show && !card.classList.contains('gflights-empty-card')) count++;
+  });
+  document.getElementById('deal-count-tag').textContent = count + ' Active';
+}
+
+/* ── TOAST ── */
+function showToast(msg, icon='🎉') {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.querySelector('.toast-icon').textContent = icon;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+/* ── MODAL ── */
+function openModal(data) {
+  const overlay = document.getElementById('dealModal');
+  const badgeColors = { error:'background:rgba(220,60,60,0.1);color:#e06060;border:1px solid rgba(220,60,60,0.3)', business:'background:rgba(168,85,247,0.1);color:#c084fc;border:1px solid rgba(168,85,247,0.3)', premium:'background:rgba(251,191,36,0.1);color:#fbbf24;border:1px solid rgba(251,191,36,0.3)', '':'background:rgba(196,85,128,0.13);color:#d4709a;border:1px solid rgba(196,85,128,0.28)' };
+  document.getElementById('modal-badge').textContent = data.badge;
+  document.getElementById('modal-badge').style.cssText = (badgeColors[data.badgeClass]||badgeColors['']) + ';font-family:Space Mono,monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:4px;display:inline-block;margin-bottom:14px';
+  document.getElementById('modal-title').textContent = data.title;
+  document.getElementById('modal-route').textContent = data.route;
+  document.getElementById('modal-price').textContent = data.price;
+  document.getElementById('modal-orig').textContent = 'Was ' + data.orig;
+  document.getElementById('modal-save').textContent = data.save;
+  document.getElementById('modal-details').innerHTML = data.details.map(d=>`<div class="modal-detail"><label>${d.l}</label><span>${d.v}</span></div>`).join('');
+  overlay.classList.add('open');
+}
+function closeModal() { document.getElementById('dealModal').classList.remove('open'); }
+document.getElementById('dealModal').addEventListener('click', e => { if(e.target.id === 'dealModal') closeModal(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+/* ── GOOGLE FLIGHTS VERIFIED DEALS ──
+   How to add a real deal:
+   1. Find it yourself on https://www.google.com/travel/flights (use the date-grid / price-graph
+      view — Google Flights flags fares that are unusually low for that route).
+   2. Note the route, the exact dates, the price you saw, and the "usual" price for that route
+      (Google Flights' price insights, or a typical fare you've seen before).
+   3. Add an object below. A card is generated automatically — but ONLY shows up if
+      (usualPrice - price) / usualPrice is 40% or more. Anything under that is silently skipped,
+      so there's no risk of an under-40% fare slipping onto the site.
+   4. The "Book on Google Flights" button is built from origin+destination+dates, so it always
+      opens the REAL, live Google Flights search for that exact itinerary — never a stale number.
+
+   Example (uncomment it and fill in real numbers to activate):
+
+   {
+     origin:'MAA', originCity:'Chennai, IN', destination:'DXB', destCity:'Dubai, AE',
+     departDate:'2026-08-12', returnDate:'2026-08-19',   // YYYY-MM-DD · leave returnDate:'' for one-way
+     price:14999, usualPrice:28000,                      // in ₹
+     airline:'IndiGo', cabinClass:'Economy',
+     duration:'3h 30m', stops:'Non-stop',
+     badge:'error'                                       // 'error' | 'business' | 'premium' | '' (economy)
+   },
+*/
+const verifiedDeals = [
+
+];
+
+function buildGoogleFlightsLink(d) {
+  let q = `Flights to ${d.destination} from ${d.origin} on ${d.departDate}`;
+  if (d.returnDate) q += ` through ${d.returnDate}`;
+  return `https://www.google.com/travel/flights?q=${encodeURIComponent(q)}`;
+}
+
+function formatDealDates(depart, ret) {
+  const opts = { day: 'numeric', month: 'short' };
+  const dStr = new Date(depart + 'T00:00:00').toLocaleDateString('en-IN', opts);
+  if (!ret) return dStr + ' · one-way';
+  const rStr = new Date(ret + 'T00:00:00').toLocaleDateString('en-IN', opts);
+  return `${dStr} – ${rStr}`;
+}
+
+function renderVerifiedDeals() {
+  const grid = document.getElementById('dealsGrid');
+  const emptyCard = document.getElementById('gflightsEmpty');
+  const badgeLabels = { error: 'Error Fare 🔴', business: 'Business ✦', premium: 'Premium Eco ★', '': 'Economy' };
+
+  const qualifying = verifiedDeals
+    .map(d => ({ ...d, discount: Math.round((d.usualPrice - d.price) / d.usualPrice * 100) }))
+    .filter(d => d.discount >= 40);
+
+  if (qualifying.length === 0) { if (emptyCard) emptyCard.style.display = 'flex'; return; }
+  if (emptyCard) emptyCard.style.display = 'none';
+
+  qualifying.forEach(d => {
+    const badgeClass = d.badge || '';
+    const card = document.createElement('div');
+    card.className = 'pass visible';
+    card.dataset.type = 'gflights';
+    card.innerHTML = `
+      <div class="pass-head">
+        <span class="pass-badge gflights">✓ Verified · Google Flights</span>
+        <span class="pass-price">₹${d.price.toLocaleString('en-IN')}</span>
+      </div>
+      <div class="perf"><div class="perf-dot"></div><div class="perf-line"></div><div class="perf-dot"></div></div>
+      <div class="pass-body">
+        <div class="route-row">
+          <div><div class="airport-code">${d.origin}</div><div class="route-city">${d.originCity}</div></div>
+          <div class="route-mid">
+            <div class="route-mid-line"><span class="route-plane">✈</span></div>
+            <div class="duration-label">${d.duration}</div>
+          </div>
+          <div style="text-align:right"><div class="airport-code">${d.destination}</div><div class="route-city">${d.destCity}</div></div>
+        </div>
+        <div class="savings-bar-wrap">
+          <div class="savings-bar-label"><span>Savings</span><strong>${d.discount}% off</strong></div>
+          <div class="savings-bar-bg"><div class="savings-bar-fill" style="width:${d.discount}%"></div></div>
+        </div>
+        <div class="pass-details">
+          <div class="pass-detail"><label>Class</label><span>${d.cabinClass}</span></div>
+          <div class="pass-detail"><label>Dates</label><span>${formatDealDates(d.departDate, d.returnDate)}</span></div>
+          <div class="pass-detail"><label>Airline</label><span>${d.airline}</span></div>
+        </div>
+      </div>
+      <a class="pass-btn" style="display:block;text-align:center;text-decoration:none;box-sizing:border-box;" href="${buildGoogleFlightsLink(d)}" target="_blank" rel="noopener noreferrer">Book on Google Flights →</a>
+    `;
+    grid.insertBefore(card, emptyCard);
+  });
+
+  document.getElementById('deal-count-tag').textContent = document.querySelectorAll('#dealsGrid .pass:not(.gflights-empty-card)').length + ' Active';
+}
+renderVerifiedDeals();
+
+/* ── SUBSCRIBE ── */
+function handleSubscribe() {
+  const email = document.getElementById('emailInput').value;
+  if(!email || !email.includes('@')) { showToast('Enter a valid email first', '⚠️'); return; }
+  document.getElementById('emailInput').value = '';
+  showToast('You\'re in! First deal lands soon. ✈', '🎉');
+}
+</script>
+</body>
+</html>
